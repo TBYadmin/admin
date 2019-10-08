@@ -1,0 +1,308 @@
+.login-wrap {
+   width: 100%;
+  height: 100%;
+  background: url('http://image.supconit.net/login-bg.png');
+  background-size: 100% 100%;
+  position: relative;
+  overflow: hidden;
+}
+.login-content-wrap{
+  width: 15.5rem;
+  height: 8.45rem;
+  background:url("http://image.supconit.net/loginFormBg.png") ;
+  background-size: 100% 100%;
+  margin: 0.8rem auto 0;
+  position: relative;
+  -webkit-box-shadow:0px 3px 18px 0px rgba(52,70,136,0.17);
+  -moz-box-shadow:0px 3px 18px 0px rgba(52,70,136,0.17);
+  box-shadow:0px 3px 18px 0px rgba(52,70,136,0.17);
+
+}
+.platform-logo{
+  width: 0.98rem;
+  height: 0.98rem;
+  display: inline-block;
+  position: absolute;
+  background: url("http://image.supconit.net/admin-logo.png");
+  background-size: 100% 100%;
+  top:0.3rem;
+  left: 0.37rem;
+
+}
+.figure-images{
+  width: 7.08rem;
+  height: 6.25rem;
+  top:0.53rem;
+  left: 0.75rem;
+  position: absolute;
+  background: url("http://image.supconit.net/figureImg.png");
+  background-size: 100% 100%;
+
+}
+.form-container-wrap{
+  width: 100%;
+  height: 6.98rem;
+  /*background: url("http://image.supconit.net/loginBg.png")center no-repeat;*/
+  -moz-background-size: 100% 100%;
+       background-size: 100% 100%;
+  border: 1px solid transparent;
+  padding: 1.28rem 6.7rem 0 ;
+  margin-bottom: 0.3rem;
+}
+.login-form-wrap{
+  width:4.5rem;
+  height:5.8rem;
+  /*background: turquoise;*/
+  position: absolute;
+  top:1.35rem;
+  right: 1.4rem;
+
+}
+.login-form-wrap .ant-row.ant-form-item{
+  width: 3.92rem;
+  height:0.54rem;
+  background:rgba(255,255,255,1);
+  -webkit-box-shadow: 0px 0.03rem 0.12rem 0px rgba(129,129,129,0.19);
+  -moz-box-shadow: 0px 0.03rem 0.12rem 0px rgba(129,129,129,0.19);
+  box-shadow: 0px 0.03rem 0.12rem 0px rgba(129,129,129,0.19);
+  border-radius:0.1rem;
+  margin: 0 auto 0.34rem;
+}
+.login-form-wrap .ant-row.ant-form-item:last-child{
+  background:transparent !important;
+  -webkit-box-shadow: none ;
+  -moz-box-shadow: none ;
+  box-shadow: none ;
+}
+.login-form-wrap .ant-select-selection{
+  border: none;
+}
+ .ant-select-open .ant-select-selection{
+  -webkit-box-shadow: none ;
+  -moz-box-shadow: none ;
+  box-shadow: none ;
+}
+.login-form-wrap  .ant-select-focused .ant-select-selection,.login-form-wrap   .ant-select-selection:focus, .login-form-wrap .ant-select-selection:active{
+  -webkit-box-shadow: none ;
+  -moz-box-shadow: none ;
+  box-shadow: none ;
+}
+.login-form-wrap .label-solt-img{
+ width: 0.24rem;
+  height: 0.24rem;
+  display: inline-block;
+  background: url("http://image.supconit.net/jiaose.png") center no-repeat;
+  background-size: 100% 100%;
+position: relative;
+  top:0.07rem;
+  margin-left: 0.1rem;
+}
+.login-form-wrap .ant-form-item-label label{
+  color:rgba(93,93,93,1) !important;
+}
+.login-form-wrap .ant-form-item-label label span{
+  color:rgba(93,93,93,1) !important;
+}
+.login-form-wrap .label-solt-img.user {
+background: url("http://image.supconit.net/User.png");
+  background-size: 100% 100%;
+}
+.login-form-wrap .label-solt-img.key {
+  background: url("http://image.supconit.net/Key.png");
+  background-size: 100% 100%;
+}
+.login-form-wrap .ant-input:hover{
+  border:none;
+}
+.login-form-wrap .ant-input:focus, .login-form-wrap .ant-input:active{
+  border: none;
+  background: transparent;
+}
+.login-form-wrap input:-internal-autofill-selected{
+  background: transparent !important;
+}
+.login-form-wrap input:-webkit-autofill{
+  background: transparent !important;
+
+}
+.login-form-wrap .ant-input:focus{
+  -webkit-box-shadow: none ;
+  -moz-box-shadow: none ;
+  box-shadow: none ;
+}
+.login-form-wrap .ant-input {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: rgb(0, 0, 0) !important;
+  border: none !important;
+  background: transparent;
+  height: 0.5rem !important;
+  line-height: 0.5rem;
+  position: relative;
+  top:0.02rem
+}
+.login-form-wrap h3{
+  font-size:0.36rem;
+  font-family:MicrosoftYaHei;
+  font-weight:bold;
+  color:rgba(64,158,255,1);
+  line-height:0.4rem;
+  text-align: center;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+.user-login-tips{
+  font-size:0.2rem;
+  font-family:MicrosoftYaHei;
+  font-weight:400;
+  color:rgba(149,149,149,1);
+  text-indent: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+.login-form-wrap .go-loginIn{
+  width:3.92rem !important;
+  height:0.56rem !important;
+  line-height: 0.56rem !important;
+  background:rgba(64,158,255,1);
+  text-align: center;
+  line-height: 0.56rem !important;
+  box-shadow:0px 3px 7px 0px rgba(67, 255, 160, 0.35);
+  border-radius:0.06rem;
+  margin-top: 0.42rem;
+  font-size:0.24rem;
+  font-family:MicrosoftYaHei;
+
+}
+.user-login-tips p{
+  font-size:0.14rem;
+  font-weight:400;
+  color:rgba(149,149,149,1);
+  opacity:0.8;
+  text-transform: uppercase;
+}
+.form-title{
+  font-size:0.24rem;
+  font-family:MicrosoftYaHei;
+  color:rgba(48,49,51,1);
+margin-bottom: 0.3rem;
+  letter-spacing: 1px;
+}
+.form-content{
+  width: 100%;
+  height: auto;
+  padding: 0 0.6rem 0.4rem;
+  border-bottom: 1px solid rgba(220,223,230,1);
+}
+.form-content .ant-form-item{
+  margin-bottom: 0.2rem;
+}
+.form-content .ant-input{
+  height:0.5rem !important;
+  border:1px solid rgba(220,223,230,1) !important;
+  -moz-border-radius:4px;
+       border-radius:4px;
+  font-size: 0.2rem;
+  color:rgba(48,49,51,1) !important;
+}
+.get-code{
+display: inline-block;
+  padding:  0 0.05rem;
+  text-decoration: underline;
+  font-size:0.18rem;
+  text-decoration:underline;
+  color:rgba(64,158,255,1);
+  cursor: pointer;
+}
+.form-content .code-input{
+  width:2.44rem !important;
+  float: right;
+}
+.biological-validation{
+  width: 100%;
+  margin-bottom: 0.6rem;
+  height:0.48rem;
+  -moz-border-radius:4px;
+       border-radius:4px;
+}
+.login-form-wrap .ant-btn-primary{
+  width: 100%;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  padding:0;
+  text-align: center;
+  font-size: 0.2rem;
+  letter-spacing: 0.1rem;
+}
+.third-party{
+  padding-top: 0.28rem;
+  height: 0.8rem;
+
+}
+.third-party .third-item{
+  width: 33.33%;
+  display: inline-block;
+  float: left;
+  height: 0.6rem;
+  position: relative;
+}
+ .third-item-content{
+position: absolute;
+  margin: auto;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  line-height: 0.34rem;
+  text-align: center;
+  color: #fff;
+  font-size: 0.5rem;
+ background:  #22AC38;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.third-item:nth-child(1) .third-item-content{
+  line-height: 0.35rem;
+}
+.third-item:nth-child(2) .third-item-content{
+  line-height: 0.33rem;
+}
+.third-item:nth-child(3) .third-item-content{
+  line-height: 0.35rem;
+}
+.third-item-content .iconfont{
+  font-size: 0.32rem;
+}
+.third-party .third-item:nth-child(2) .third-item-content{
+  background:rgba(18,150,219,0.5);
+}
+.third-party .third-item:nth-child(3) .third-item-content{
+  background:rgba(216,30,6,0.5);
+}
+.agreement,.copy-Right{
+  width: 100%;
+  text-align: center;
+  margin-top: 0.3rem;
+  font-size: 0.16rem;
+  color: #C0C4CC;
+}
+.copy-Right{
+  color:#606266;
+  font-size: 0.18rem;
+  margin-top: 0.3rem;
+}
+.agreement a{
+  color:#409EFF;
+  text-decoration: underline;
+}
+.el-message{
+  font-size: 0.18rem !important; ;
+}
+.geetest_holder.geetest_wind{
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
+}
+.geetest_holder.geetest_wind .geetest_radar_btn{
+  border:1px solid rgba(220,223,230,1) !important;
+}
