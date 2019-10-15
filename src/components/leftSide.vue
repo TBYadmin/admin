@@ -27,11 +27,12 @@
                         <a-menu-item :key="subItem.key" @click="openPane" v-for="(subItem,index) in item.children">
                             {{subItem.name}}
                         </a-menu-item>
-                        <a-menu-item key="orderList" @click="openPane">订单列表</a-menu-item>
+                        <!--<a-menu-item key="orderList" @click="openPane">订单列表</a-menu-item>-->
                         <a-menu-item key="financialSummary" @click="openPane">财务汇总</a-menu-item>
+                        <a-menu-item key="siteRevenueNumber" @click="openPane">营业点财务汇总</a-menu-item>
+                        <a-menu-item key="commoditySales" @click="openPane">商品销售</a-menu-item>
+
                         <!--<a-menu-item key="channelManagement" @click="openPane">支付渠道管理</a-menu-item>-->
-
-
                     </a-sub-menu>
                     <!--<a-sub-menu key="sub2">-->
                     <!--<span slot="title"><i class="menu-title-icon set"></i><span style="color:rgba(36,48,84,1)"-->
@@ -82,7 +83,10 @@
                     reconciliation:'对账',
                     channelManagement: '支付渠道管理',
                     orderList:"订单管理",
-                    financialSummary:'财务汇总'
+                    financialSummary:'财务汇总',
+                    siteRevenueNumber:'营业点财务汇总',
+                    commoditySales:'商品销售汇总',
+                    shouldCollect:'应收账款明细'
                 },
                 userMenuList: []
             }

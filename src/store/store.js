@@ -10,13 +10,15 @@ import sales from "@/views/manage/sales"
 import activity from "@/views/manage/activity"
 import processList from "@/views/manage/processList"
 import valenceManagement from "@/views/manage/valenceManagement"
-import  controller from '@/views/manage/controller'
-import  enrollment from  '@/views/manage/enrollment'
-import  reconciliation from '@/views/manage/reconciliation'
-import  channelManagement from '@/views/manage/channelManagement'
-import  orderList from '@/views/manage/orderList'
-import  financialSummary from '@/views/financial/financialSummary'
-
+import controller from '@/views/manage/controller'
+import enrollment from '@/views/manage/enrollment'
+import reconciliation from '@/views/manage/reconciliation'
+import channelManagement from '@/views/manage/channelManagement'
+import orderList from '@/views/manage/orderList'
+import financialSummary from '@/views/financial/financialSummary'
+import siteRevenueNumber from '@/views/financial/siteRevenueNumber'
+import commoditySales from '@/views/financial/commoditySales'
+import  shouldCollect from '@/views/financial/shouldCollect'
 Vue.use(Vuex)
 
 // initial state
@@ -33,20 +35,21 @@ const state = {
         {content: enrollment, key: 'enrollment'},
         {content: reconciliation, key: 'reconciliation'},
         {content: channelManagement, key: 'channelManagement'},
-        {content:orderList, key:'orderList'},
-        {content:financialSummary, key:'financialSummary'},
-
-
-
-
+        {content: orderList, key: 'orderList'},
+        {content: financialSummary, key: 'financialSummary'},
+        {content: siteRevenueNumber, key: 'siteRevenueNumber'},
+        {content: commoditySales, key: 'commoditySales'},
+        {content: shouldCollect, key: 'shouldCollect'},
 
     ],
     paneArray: [
-        {title: '资质列表', content: qualificationList, key: 'qualificationList'},
+        {title: '资质列表', content:qualificationList, key: 'qualificationList'},
+
+
     ],
     activeKey: 'qualificationList',
-    qiNiuLink:'http://image.supconit.net',
-    validationState:true
+    qiNiuLink: 'http://image.supconit.net',
+    validationState: true
 
 }
 
@@ -55,7 +58,7 @@ const getters = {
     getpaneArray: state => state.paneArray,
     getactiveKey: state => state.activeKey,
     getqiNiuLink: state => state.qiNiuLink,
-    getvalidationState:state => state.validationState
+    getvalidationState: state => state.validationState
 }
 
 // actions
@@ -97,10 +100,10 @@ const mutations = {
         state.paneArray = name;
     },
     setqiNiuLink(state, name) {
-        state.qiNiuLink =  name
+        state.qiNiuLink = name
     },
-    setvalidationState(state, value){
-        state.validationState=value
+    setvalidationState(state, value) {
+        state.validationState = value
     }
 
 }

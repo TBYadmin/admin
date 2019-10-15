@@ -5,21 +5,23 @@
                 <a-form :form="searchForm" layout="inline">
                     <a-form-item :label="'订单类型'">
                         <!--0 代办 1我发起的流程 2 历史流程-->
-                        <a-select defaultValue="0" style="width: 120px" v-model="searchForm.orderType">
-                            <a-select-option value="0">酒店</a-select-option>
-                            <a-select-option value="1">门票</a-select-option>
+                        <a-select style="width: 120px" v-model="searchForm.orderType">
+                            <a-select-option value="1">酒店</a-select-option>
+                            <a-select-option value="2">门票</a-select-option>
 
                         </a-select>
                     </a-form-item>
                     <a-form-item :label="'订单状态'">
                         <!--0 代办 1我发起的流程 2 历史流程-->
-                        <a-select defaultValue="0" style="width: 120px" v-model="searchForm.orderState">
-                            <a-select-option value="0">已支付</a-select-option>
-                            <a-select-option value="1">未支付</a-select-option>
+                        <a-select style="width: 120px" v-model="searchForm.orderState">
+                            <a-select-option value="1">下单成功</a-select-option>
+                            <a-select-option value="2">下单失败</a-select-option>
+                            <a-select-option value="3">待付款</a-select-option>
+                            <a-select-option value="4">付款成功</a-select-option>
+                            <a-select-option value="11">退款成功</a-select-option>
+                            <a-select-option value="12">正在退款</a-select-option>
+                            <a-select-option value="13">退款失败</a-select-option>
                         </a-select>
-                    </a-form-item>
-                    <a-form-item :label="'商户ID'">
-                        <a-input v-model="searchForm.merchantId" placeholder="商户ID"/>
                     </a-form-item>
                     <a-form-item :label="'支付类型'">
                         <!--0 代办 1我发起的流程 2 历史流程-->
@@ -32,16 +34,17 @@
                     <a-form-item label="创建日期:">
                         <a-date-picker v-model="searchForm.createTime"/>
                     </a-form-item>
-                    <a-form-item style="margin-top: 0.15rem;">
+                    <a-form-item >
                         <a-button type="primary" @click="handleSearch">确定</a-button>
                         <a-button type="primary" @click="reset">重置</a-button>
                     </a-form-item>
-                    <a-form-item style="margin-top: 0.15rem;">
+                    <a-form-item >
                         <a-button type="primary" @click="fresh" style="margin-left: 1rem">刷新</a-button>
                     </a-form-item>
                 </a-form>
             </div>
         </a-layout-header>
+        <a-layout-content>
         <div class="table-wrap table-layout"
              style="padding: 0  0.42rem;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">
             <a-table :columns="columns" :dataSource="data" :pagination="pagination"
@@ -49,17 +52,19 @@
                                 <span slot="process" slot-scope="process,record">
                   <a-tag color="blue" v-if="process !==''" @click="() => checkProcess(record.key)">{{process}}</a-tag>
                              </span>
-                <template slot="operation" slot-scope="text, record">
-                    <div class="editable-row-operations">
-                <span class="deal-option-span">
-                      <a @click="() => deal(record)"> <i class="edit-i"></i>  <i>处理</i></a>
+                <!--<template slot="operation" slot-scope="text, record">-->
+                <!--<div class="editable-row-operations">-->
+                <!--<span class="deal-option-span">-->
+                <!--<a @click="() => deal(record)"> <i class="edit-i"></i>  <i>处理</i></a>-->
 
-                    </span>
-                    </div>
-                </template>
+                <!--</span>-->
+                <!--</div>-->
+                <!--</template>-->
             </a-table>
+            <a-pagination @change="pageChange" :current="current" :total="total"
+                          :pageSize="size"/>
         </div>
-
+        </a-layout-content>
     </div>
 </template>
 
@@ -77,6 +82,11 @@
             scopedSlots: {customRender: 'key'}
         },
         {
+            title: '订单类型',
+            dataIndex: 'type',
+            scopedSlots: {customRender: 'type'}
+        },
+        {
             title: '创建时间',
             dataIndex: 'createTime',
             scopedSlots: {customRender: 'createTime'}
@@ -87,9 +97,9 @@
             scopedSlots: {customRender: 'conatct'}
         },
         {
-            title: '商户名称',
-            dataIndex: 'merchantName',
-            scopedSlots: {customRender: 'merchantName'}
+            title: '商户编号',
+            dataIndex: 'merchantNumber',
+            scopedSlots: {customRender: 'merchantNumber'}
         },
         {
             title: '订单金额',
@@ -101,33 +111,35 @@
             dataIndex: 'orderState',
             scopedSlots: {customRender: 'orderState'}
         },
+        {
+            title: '支付渠道',
+            dataIndex: 'payChannel',
+            scopedSlots: {customRender: 'payChannel'}
+        },
 
         //     {
         //     title: '注册时间',
         //     dataIndex: 'date',
         //     scopedSlots: {customRender: 'date'}
         // },
-        {
-            title: '处理',
-            dataIndex: 'operation',
-            scopedSlots: {customRender: 'operation'}
-        }]
+        // {
+        //     title: '处理',
+        //     dataIndex: 'operation',
+        //     scopedSlots: {customRender: 'operation'}
+        // }
+    ]
     export default {
         name: "processList",
         data() {
             return {
-                pagination: {
-                    pageSize: 9, // 默认每页显示数量
-                    defaultPageSize: 9,
-
-                },
+                pagination: false,
+                total:0,
                 current: 1,
                 size: 10,
                 searchForm: {
                     orderType: '',
                     orderState: '',
-                    merchantId: '',
-                    payType: 2,
+                    payType: '',
                     createTime: null,
                     current: 1,
                     size: 8
@@ -149,6 +161,7 @@
         methods: {
 
             handleSearch() {
+                this.current=1;
                 this.getProcessList()
             },
             fresh() {
@@ -166,32 +179,96 @@
              * get processList
              */
             getProcessList() {
-                // +'&chargeType='+this.searchForm.payType+'&state='+this.searchForm.orderState+'&type='+this.searchForm.orderType
-                let requestUrl = '';
+                console.log(this.searchForm);
+                let timeStamp = 0;
+                let parmas = {};
+                parmas['payType'] = this.searchForm.payType;
+
                 if (this.searchForm.createTime !== null) {
-                    requestUrl = '/order/info/page4B?current=' + this.current + '&size=10' + '&chargeType=' + this.searchForm.payType + '&createTime=' + this.searchForm.createTime + '&state=' + this.searchForm.orderState + '&type=' + this.searchForm.orderType
-                } else {
-                    requestUrl = '/order/info/page4B?current=' + this.current + '&size=' +this.size
+                    parmas['createTime'] = moment(this.searchForm.createTime).valueOf()
                 }
-                fetch.post(requestUrl, {}).then(res => {
-                    console.log(res);
-                    let array = res.obj;
+                if (this.searchForm.orderState !== '') {
+                    parmas['state'] = parseInt(this.searchForm.orderState)
+                }
+                if (this.searchForm.orderType) {
+                    parmas['type'] = parseInt(this.searchForm.orderType)
+                }
+                debugger
+                fetch.post('/order/info/page4B?current=' +this.current + '&size=' + this.size, parmas).then(res => {
+                    let array = res.obj.records
+                    this.total=parseInt(res.obj.total)
+                    console.log(array);
                     let tableData = [];
                     this.loading = false;
-                    for (var i = 0; i < 10; i++) {
+                    array.forEach((item, index) => {
+                        let contactJson = JSON.parse(item.contactsJson);
+                        let contactArray = [];
+                        contactJson.forEach(contactItem => {
+                            contactArray.push(contactItem.name)
+                        });
                         let dataJson = {};
-                        dataJson['key'] = i;
-                        dataJson['createTime'] = '2019-09-18' + i;
-                        dataJson['conatct'] = '联系人' + i;
-                        dataJson['merchantName'] = '商户名' + i;
-                        dataJson['orderAmount'] = 259 + i;
-                        dataJson['orderState'] = '已支付'
+                        dataJson['key'] = item.id;
+                        dataJson['createTime'] = moment(parseInt(item.createTime)).format('YYYY-MM-DD HH:mm:ss');
+                        dataJson['conatct'] = contactArray.join(',');
+                        dataJson['merchantNumber'] = item.shopId;
+                        dataJson['orderAmount'] = item.price;
+                        let channel = ''
+                        switch (item.chargeType) {
+                            case '1':
+                                channel = '支付宝';
+                                break
+                            case '2':
+                                channel = '微信支付';
+                                break
+                            default :
+                                channel = '银联支付';
+                        }
+                        dataJson['payChannel'] = channel;
+                        let state = ''
+                        switch (item.state) {
+                            case 1:
+                                state = '下单成功';
+                                break;
+                            case 2:
+                                state = '下单失败';
+                                break;
+                            case 3:
+                                state = '待付款';
+                                break;
+                            case 4:
+                                state = '付款成功';
+                                break;
+                            case 11:
+                                state = '退款成功';
+                                break;
+                            case 12:
+                                state = '正在退款';
+                                break;
+                            default :
+                                state = '退款失败';
+                        }
+                        dataJson['orderState'] = state;
+                        let orderType = '';
+                        switch (item.type) {
+                            case 1:
+                                orderType = '酒店订单'
+                                break;
+                            default:
+                                orderType = '景区订单'
+                        }
+                        dataJson['type'] = orderType
+
                         tableData.push(dataJson);
-                    }
+                    })
+
                     this.data = tableData
                 })
             },
             fetchAgan() {
+                this.getProcessList();
+            },
+            pageChange(value){
+                this.current=value;
                 this.getProcessList();
             }
         }

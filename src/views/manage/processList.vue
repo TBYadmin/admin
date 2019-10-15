@@ -198,6 +198,7 @@
             deal(recode) {
                 console.log(recode);
                 let key = recode.dealId;
+                debugger
                 let type = recode.name;
                 switch (type) {
                     case "商品审核":

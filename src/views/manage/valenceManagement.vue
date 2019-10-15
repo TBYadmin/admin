@@ -46,7 +46,8 @@
                 <div class="ValenceCalendar-item">
                     <span class="good-name">{{goodName}}</span>
                     <a-calendar @select="dateSlect" @panelChange="startPaneChange" :fullscreen="fullscreen"
-                                :disabledDate="disabledDate">
+                                >
+                        <!--:disabledDate="disabledDate"-->
                         <ul class="events" slot="dateCellRender" slot-scope="value">
                             <li v-for="(item,index) in getListData(value)" :key="item.content">
                                 <span class="solt-tile">{{item.title}}:  <mark> <i v-if="index==0"
@@ -163,9 +164,9 @@
 
         },
         methods: {
-            disabledDate(current) {
-                return current && current < moment().endOf('day');
-            },
+            // disabledDate(current) {
+            //     return current && current < moment().endOf('day');
+            // },
             fliterQuery() {
                 this.getMerchantsGoods()
 

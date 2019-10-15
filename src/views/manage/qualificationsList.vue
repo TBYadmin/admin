@@ -220,6 +220,7 @@
                 fetch.get('/aptitude/table?size=' + queryObeject.size + '&current=' + queryObeject.page + '&name=' + queryObeject.name + '&type=' + qualificationsType).then(res => {
                     let recodeArray = res.obj.records;
                     this.total = parseInt(res.obj.total);
+
                     console.log(recodeArray)
                     let tableData = [];
                     recodeArray.forEach((item) => {

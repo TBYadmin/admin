@@ -1260,3 +1260,6 @@ height: 0.4rem;
 .wrap.rich-text-eidt  .markdown-body{
 height: 100%;
 }
+.amap-logo,.amap-copyright{
+    display: none !important;
+}

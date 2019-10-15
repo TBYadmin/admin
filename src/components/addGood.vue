@@ -11,8 +11,9 @@
                     </a-select>
                 </a-form-item>
                 <div class="form-wrap">
-                    <add-good-hotel v-if="type=='1'"  v-on:hideModel="hideModel" ref="addGoodHotel"></add-good-hotel>
-                    <add-good-ticket v-if="type=='2'"  v-on:hideModel="hideModel" ref="addGoodTicket"></add-good-ticket>
+
+                    <add-good-hotel v-show="type=='1'"  v-on:hideModel="hideModel" ref="addGoodHotel"></add-good-hotel>
+                    <add-good-ticket v-show="type=='2'"  v-on:hideModel="hideModel" ref="addGoodTicket"></add-good-ticket>
                 </div>
             </a-form>
         </div>
@@ -32,7 +33,8 @@
                 addgoodModelShow: false,
                 type:'1',
                 title:'新增商品',
-                typeDisabled:false
+                typeDisabled:false,
+                com:addGoodHotel
             }
         },
         components:{
