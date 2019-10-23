@@ -19,6 +19,7 @@ import financialSummary from '@/views/financial/financialSummary'
 import siteRevenueNumber from '@/views/financial/siteRevenueNumber'
 import commoditySales from '@/views/financial/commoditySales'
 import  shouldCollect from '@/views/financial/shouldCollect'
+import  orderAnalysis from '@/views/anaylse/analyse'
 Vue.use(Vuex)
 
 // initial state
@@ -40,14 +41,15 @@ const state = {
         {content: siteRevenueNumber, key: 'siteRevenueNumber'},
         {content: commoditySales, key: 'commoditySales'},
         {content: shouldCollect, key: 'shouldCollect'},
+        {content: orderAnalysis, key: 'orderAnalysis'},
 
     ],
     paneArray: [
         {title: '资质列表', content:qualificationList, key: 'qualificationList'},
-
+        {title: '订单分析', content:orderAnalysis, key: 'orderAnalysis'},
 
     ],
-    activeKey: 'qualificationList',
+    activeKey: 'orderAnalysis',
     qiNiuLink: 'http://image.supconit.net',
     validationState: true
 

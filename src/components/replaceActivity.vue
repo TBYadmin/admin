@@ -179,21 +179,10 @@
                 this.fileList = fileList;
             },
             removePic(file) {
-                debugger
-                if (file.response == undefined) {
-                    let imgIndex = this.fileList.indexOf(file.name);
-                    fetch.delete(this.action + '/' + file.name, '')
-                        .then(res => {
-                            this.fileList.splice(imgIndex, 1);
-                        })
-                } else {
-                    let imgIndex = this.fileList.indexOf(file.response.obj[0].key);
-                    fetch.delete(this.action + '/' + file.response.obj[0].key).then(res => {
-
-                        this.fileList.splice(imgIndex, 1);
-                    })
+                if (file.response) {
+                    fetch.delete(this.action + '/' + file.response.obj[0].key)
+                        .then(res => console.log(res))
                 }
-
                 console.log(file)
             },
             submitreplaceActivity() {

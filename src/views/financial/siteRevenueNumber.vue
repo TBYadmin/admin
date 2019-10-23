@@ -23,8 +23,8 @@
                     </a-form>
                 </div>
             </a-layout-header>
-            <a-layout-content style="padding:  0 0.25rem ;">
-                <template>
+            <a-layout-content class="table-layout" style="padding:  0 0.25rem ;">
+
                     <a-table
                             :columns="columns"
                             :dataSource="data"
@@ -33,7 +33,7 @@
                             :scroll="{ x: '130%', y:0 }"
                             :pagination="pagination"
                     />
-                </template>
+
             </a-layout-content>
         </a-layout>
     </div>
@@ -306,7 +306,11 @@
                         }
                     })
                     const data = this.formatJson(filterVal, list);
-                    export_json_to_excel_site(tHeader, data, '营业点收入人数统计表');
+                    if(that.searchForm.timeRange.length>0){
+                        export_json_to_excel_site(tHeader, data,moment(that.searchForm.timeRange[0]).format('YYYY-MM-DD')+'至'+ moment(that.searchForm.timeRange[1]).format('YYYY-MM-DD')+'营业点收入人数统计表');
+                    }else{
+                        export_json_to_excel_site(tHeader, data, '营业点收入人数统计表');
+                    }
                 })
             }
         }

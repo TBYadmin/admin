@@ -29,6 +29,9 @@ Vue.use(mavonEditor)
 Vue.use(BaiduMap, {
     ak: 'VqXt4r5hV3SbLvQVBeGFqcKG0PAyMTF7'    //这个地方是官方提供的ak密钥
 })
+// 引入echarts
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 let start = function () {
   // session 携带
   // axios.defaults.withCredentials = true
