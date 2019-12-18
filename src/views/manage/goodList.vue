@@ -206,24 +206,19 @@
                     // console.log(goodType)
                     //设置商品类型 匹配展示商品信息组件
                     this.$refs.addGood.type = goodType;
-                    console.log(goodType);
-                    let that=this;
-                    setTimeout(function(){
+                    console.log(goodType)
+                    // debugger
+                    switch (goodType) {
+                        case '1':
+                            this.$refs.addGood.$refs.addGoodHotel.setGoodId(record.key);
+                            this.$refs.addGood.$refs.addGoodHotel.echoGood();
+                            break;
+                        case '2':
+                            this.$refs.addGood.$refs.addGoodTicket.setGoodId(record.key);
+                            this.$refs.addGood.$refs.addGoodTicket.echoGood();
+                            break;
 
-                        // debugger
-                        switch (goodType) {
-                            case '1':
-                                that.$refs.addGood.$refs.addGoodHotel.setGoodId(record.key);
-                                that.$refs.addGood.$refs.addGoodHotel.echoGood();
-                                break;
-                            case '2':
-                                that.$refs.addGood.$refs.addGoodTicket.setGoodId(record.key);
-                                that.$refs.addGood.$refs.addGoodTicket.echoGood();
-                                break;
-
-                        }
-                    },500)
-
+                    }
                 })
 
             },

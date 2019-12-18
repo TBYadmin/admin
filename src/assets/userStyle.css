@@ -1263,30 +1263,3 @@ height: 100%;
 .amap-logo,.amap-copyright{
     display: none !important;
 }
-.exportExcel{
-    width: 0.9rem;
-    height: 0.4rem;
-    background: #409EFF;
-    color: #fff;
-    font-size: 0.18rem;
-    display: inline-block;
-    width: 0.9rem;
-    height: 0.4rem;
-    line-height: 0.4rem;
-    text-align: center;
-    cursor: pointer;
-    border-left: 1px solid #ddd;
-}
-.table-layout .ant-table-thead > tr {
-    background: rgba(220, 220, 220, 1);
-    color: #616467;
-    font-size: 0.16rem;
-}
-.ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-thead > tr > th{
-    background: rgba(220, 220, 220, 1) !important;
-}
-
-
- .table-layout .ant-table-tbody > tr > td {
-     font-size: 0.19rem;
- }

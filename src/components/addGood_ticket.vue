@@ -217,7 +217,7 @@
                             ['name']: Json.name,
                             ['aptitudeId']: Json.aptitudeId,
                             ['introduction']: Json.introduction,
-                            ['personNumber']: Json.personNumber,
+                            ['personNumber']: 2,
                             ['type']: Json.type.toString()
                         }
                     )

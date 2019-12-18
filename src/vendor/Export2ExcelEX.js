@@ -125,25 +125,20 @@ export function export_table_to_excel(id) {
 function formatJson(jsonData) {
   console.log(jsonData)
 }
-export function export_json_to_excel_financial(th, jsonData, defaultTitle) {
+export function export_json_to_excel(th, jsonData, defaultTitle) {
+
   /* original data */
+
   var data = jsonData;
   data.unshift(th);
   data.unshift(['营业点','收入总额','应付合作方','','','开票金额','未票金额','收款方式','','','','','','','到账情况','','','','','未到账金额','其他']);
-  data.unshift(['财务结算汇总表']);
-  var ws_name = "财务结算汇总表";
+  data.unshift(['','','','','','','','','财务结算汇总表']);
+
+  var ws_name = "SheetJS";
+
   var wb = new Workbook(), ws = sheet_from_array_of_arrays(data);
+
     ws["!merges"] = [
-        {  //合并A1U1单元格
-            s: {//s为开始
-                c: 0,//开始列
-                r: 0//开始取值范围
-            },
-            e: {//e结束
-                c: 20,//结束列
-                r: 0//结束范围
-            }
-        },
          {  //合并A2A3单元格
             s: {//s为开始
                 c: 0,//开始列
@@ -236,60 +231,63 @@ export function export_json_to_excel_financial(th, jsonData, defaultTitle) {
         },
     ]
     console.log(ws)
-    ws["A1"].s = {  //设置主标题样式
-        alignment: {
-            horizontal: "center" ,
-            vertical: "center"
-        }
-    };
+
     ws["A2"].s = {  //设置主标题样式
         alignment: {
             horizontal: "center" ,
             vertical: "center"
         }
     };
+
     ws["B2"].s = {  //设置主标题样式
         alignment: {
             horizontal: "center" ,
             vertical: "center"
         }
     };
+
     ws["C2"].s = {  //设置主标题样式
         alignment: {
             horizontal: "center" ,
             vertical: "center"
         }
     };
+
     ws["F2"].s = {  //设置主标题样式
         alignment: {
             horizontal: "center" ,
             vertical: "center"
         }
     };
+
     ws["G2"].s = {  //设置主标题样式
         alignment: {
             horizontal: "center" ,
             vertical: "center"
         }
     };
+
     ws["H2"].s = {  //设置主标题样式
         alignment: {
             horizontal: "center" ,
             vertical: "center"
         }
     };
+
     ws["O2"].s = {  //设置主标题样式
         alignment: {
             horizontal: "center" ,
             vertical: "center"
         }
     };
+
     ws["T2"].s = {  //设置主标题样式
         alignment: {
             horizontal: "center" ,
             vertical: "center"
         }
     };
+
     ws["U2"].s = {  //设置主标题样式
         alignment: {
             horizontal: "center" ,
@@ -304,223 +302,4 @@ export function export_json_to_excel_financial(th, jsonData, defaultTitle) {
   var wbout = XLSX.write(wb, {bookType: 'xlsx', bookSST: false, type: 'binary'});
   var title = defaultTitle || '列表'
   saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), title + ".xlsx")
-}
-
-export function export_json_to_excel_site(th, jsonData, defaultTitle) {
-
-    /* original data */
-
-    var data = jsonData;
-    data.unshift(th);
-    //data.unshift(['营业点','收入总额','应付合作方','','','开票金额','未票金额','收款方式','','','','','','','到账情况','','','','','未到账金额','其他']);
-    data.unshift(['营业点收入人数统计表']);
-    var ws_name = "营业点收入人数统计表";
-    var wb = new Workbook(), ws = sheet_from_array_of_arrays(data);
-    ws["!merges"] = [
-        {  //合并A1G1单元格
-            s: {//s为开始
-                c: 0,//开始列
-                r: 0//开始取值范围
-            },
-            e: {//e结束
-                c: 8,//结束列
-                r: 0//结束范围
-            }
-        },
-        ]
-    console.log(ws)
-    ws["A1"].s = {  //设置主标题样式
-        alignment: {
-            horizontal: "center" ,
-            vertical: "center"
-        }
-    };
-    /* add worksheet to workbook */
-    wb.SheetNames.push(ws_name);
-    wb.Sheets[ws_name] = ws;
-
-    var wbout = XLSX.write(wb, {bookType: 'xlsx', bookSST: false, type: 'binary'});
-    var title = defaultTitle || '列表'
-    saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), title + ".xlsx")
-}
-
-export function export_json_to_excel_commodity(th, jsonData, defaultTitle) {
-
-    /* original data */
-
-    var data = jsonData;
-    data.unshift(th);
-    //data.unshift(['营业点','收入总额','应付合作方','','','开票金额','未票金额','收款方式','','','','','','','到账情况','','','','','未到账金额','其他']);
-    data.unshift(['商品销售表']);
-    var ws_name = "商品销售表";
-    var wb = new Workbook(), ws = sheet_from_array_of_arrays(data);
-    ws["!merges"] = [
-        {  //合并A1G1单元格
-            s: {//s为开始
-                c: 0,//开始列
-                r: 0//开始取值范围
-            },
-            e: {//e结束
-                c: 8,//结束列
-                r: 0//结束范围
-            }
-        },
-    ]
-    console.log(ws)
-    ws["A1"].s = {  //设置主标题样式
-        alignment: {
-            horizontal: "center" ,
-            vertical: "center"
-        }
-    };
-    /* add worksheet to workbook */
-    wb.SheetNames.push(ws_name);
-    wb.Sheets[ws_name] = ws;
-
-    var wbout = XLSX.write(wb, {bookType: 'xlsx', bookSST: false, type: 'binary'});
-    var title = defaultTitle || '列表'
-    saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), title + ".xlsx")
-}
-export function export_json_to_excel_shouldCollect(th, jsonData, defaultTitle) {
-    /* original data */
-    var data = jsonData;
-    data.unshift(th);
-    data.unshift(['应收明细','应收金额','类型','','','发生时间','其他']);
-    data.unshift(['应收账款明细表']);
-    var ws_name = "应收账款明细表";
-    var wb = new Workbook(), ws = sheet_from_array_of_arrays(data);
-    ws["!merges"] = [
-        {  //合并A1G1单元格
-            s: {//s为开始
-                c: 0,//开始列
-                r: 0//开始取值范围
-            },
-            e: {//e结束
-                c: 6,//结束列
-                r: 0//结束范围
-            }
-        },
-        {  //合并A2A3单元格
-            s: {//s为开始
-                c: 0,//开始列
-                r: 1//开始取值范围
-            },
-            e: {//e结束
-                c: 0,//结束列
-                r: 2//结束范围
-            }
-        },
-        {  //合并B2B3单元格
-            s: {//s为开始
-                c: 1,//开始列
-                r: 1//开始取值范围
-            },
-            e: {//e结束
-                c: 1,//结束列
-                r: 2//结束范围
-            }
-        },
-        {  //合并C2E2单元格
-            s: {//s为开始
-                c: 2,//开始列
-                r: 1//开始取值范围
-            },
-            e: {//e结束
-                c: 4,//结束列
-                r: 1//结束范围
-            }
-        },
-        {  //合并F2F3单元格
-            s: {//s为开始
-                c: 5,//开始列
-                r: 1//开始取值范围
-            },
-            e: {//e结束
-                c: 5,//结束列
-                r: 2//结束范围
-            }
-        },
-        {  //合并F2F3单元格
-            s: {//s为开始
-                c: 6,//开始列
-                r: 1//开始取值范围
-            },
-            e: {//e结束
-                c: 6,//结束列
-                r: 2//结束范围
-            }
-        },
-
-
-    ]
-    console.log(ws)
-    ws["A1"].s = {  //设置主标题样式
-        alignment: {
-            horizontal: "center" ,
-            vertical: "center"
-        }
-    };
-    ws["A2"].s = {  //设置主标题样式
-        alignment: {
-            horizontal: "center" ,
-            vertical: "center"
-        }
-    };
-    ws["B2"].s = {  //设置主标题样式
-        alignment: {
-            horizontal: "center" ,
-            vertical: "center"
-        }
-    };
-    ws["C2"].s = {  //设置主标题样式
-        alignment: {
-            horizontal: "center" ,
-            vertical: "center"
-        }
-    };
-    ws["G2"].s = {  //设置主标题样式
-        alignment: {
-            horizontal: "center" ,
-            vertical: "center"
-        }
-    };
-    ws["F2"].s = {  //设置主标题样式
-        alignment: {
-            horizontal: "center" ,
-            vertical: "center"
-        }
-    };
-
-    // ws["H2"].s = {  //设置主标题样式
-    //     alignment: {
-    //         horizontal: "center" ,
-    //         vertical: "center"
-    //     }
-    // };
-    // ws["O2"].s = {  //设置主标题样式
-    //     alignment: {
-    //         horizontal: "center" ,
-    //         vertical: "center"
-    //     }
-    // };
-    // ws["T2"].s = {  //设置主标题样式
-    //     alignment: {
-    //         horizontal: "center" ,
-    //         vertical: "center"
-    //     }
-    // };
-    // ws["U2"].s = {  //设置主标题样式
-    //     alignment: {
-    //         horizontal: "center" ,
-    //         vertical: "center"
-    //     }
-    // };
-
-    /* add worksheet to workbook */
-    wb.SheetNames.push(ws_name);
-    wb.Sheets[ws_name] = ws;
-
-    var wbout = XLSX.write(wb, {bookType: 'xlsx', bookSST: false, type: 'binary'});
-    var title = defaultTitle || '列表';
-    saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), title + ".xlsx")
 }

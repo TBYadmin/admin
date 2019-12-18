@@ -9,8 +9,8 @@
                 <a-textarea placeholder="输入活动描述" col="5" row="15" v-decorator="addActivity.description"  />
             </a-form-item>
             <a-form-item label="活动时间" :label-col="{ span: 4 }"   >
-                <!---->
-               <a-range-picker :format="dateFormat" v-decorator="addActivity.ActiveDate"  :disabledDate="disabledDate"/>
+                <!--:disabledDate="disabledDate"-->
+               <a-range-picker :format="dateFormat" v-decorator="addActivity.ActiveDate" />
             </a-form-item>
 
             <a-form-item label="报名时间" :label-col="{ span:4}"   >

@@ -23,8 +23,8 @@
                     </a-form>
                 </div>
             </a-layout-header>
-            <a-layout-content class="table-layout" style="padding:  0 0.25rem ;">
-
+            <a-layout-content style="padding:  0 0.25rem ;">
+                <template>
                     <a-table
                             :columns="columns"
                             :dataSource="data"
@@ -33,7 +33,7 @@
                             :scroll="{ x: '130%', y:0 }"
                             :pagination="pagination"
                     />
-
+                </template>
             </a-layout-content>
         </a-layout>
     </div>
@@ -272,14 +272,11 @@
             fresh() {
 
             },
-            formatJson(filterVal, jsonData) {
-                return jsonData.map(v => filterVal.map(j => v[j]))
-            },
             export2Excel() {
                 let that = this;
                 require.ensure([], () => {
                     //这里的require的路径要写对，不然运行会有错误
-                    const {export_json_to_excel_site} = require('@/vendor/Export2ExcelEX');
+                    const {export_json_to_excel} = require('@/vendor/Export2ExcelEX');
                     let tHeader = [];
                     let filterVal = [];
                     that.columns[0].children.forEach((item, index) => {
@@ -306,11 +303,7 @@
                         }
                     })
                     const data = this.formatJson(filterVal, list);
-                    if(that.searchForm.timeRange.length>0){
-                        export_json_to_excel_site(tHeader, data,moment(that.searchForm.timeRange[0]).format('YYYY-MM-DD')+'至'+ moment(that.searchForm.timeRange[1]).format('YYYY-MM-DD')+'营业点收入人数统计表');
-                    }else{
-                        export_json_to_excel_site(tHeader, data, '营业点收入人数统计表');
-                    }
+                    export_json_to_excel(tHeader, data, '对账单');
                 })
             }
         }

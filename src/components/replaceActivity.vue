@@ -1,40 +1,37 @@
 <template>
-    <a-modal v-model="replaceActivityShow" title="修改活动" @cancel="cancel" class="add-modal" :footer="null"
-             :width="modalWidth">
+    <a-modal v-model="replaceActivityShow" title="修改活动" @cancel="cancel" class="add-modal"  :footer="null" :width="modalWidth">
         <div class="wrap">
-            <a-form :form="replaceActivity.form">
-                <a-form-item label="活动名称" :label-col="{ span: 4 }" :wrapper-col="{ span: 8}">
+            <a-form :form="replaceActivity.form"  >
+                <a-form-item label="活动名称" :label-col="{ span: 4 }" :wrapper-col="{ span: 8}" >
                     <a-input placeholder="输入活动名称" v-decorator="replaceActivity.name"/>
                 </a-form-item>
-                <a-form-item label="活动描述" :label-col="{ span: 4 }" :wrapper-col="{ span: 20}">
-                    <a-textarea placeholder="输入活动描述" col="5" row="15" v-decorator="replaceActivity.description"/>
+                <a-form-item label="活动描述" :label-col="{ span: 4 }" :wrapper-col="{ span: 20}" >
+                    <a-textarea placeholder="输入活动描述" col="5" row="15" v-decorator="replaceActivity.description"  />
                 </a-form-item>
-                <a-form-item label="活动时间" :label-col="{ span: 4 }">
-                    <a-range-picker :format="dateFormat" v-decorator="replaceActivity.ActiveDate"
-                                    :disabledDate="disabledDate"/>
-                </a-form-item>
-
-                <a-form-item label="报名时间" :label-col="{ span:4}">
-                    <a-range-picker :format="dateFormat" v-decorator="replaceActivity.enrollDate"
-                                    :disabledDate="disabledDate"/>
+                <a-form-item label="活动时间" :label-col="{ span: 4 }"   >
+                    <a-range-picker :format="dateFormat" v-decorator="replaceActivity.ActiveDate" :disabledDate="disabledDate"/>
                 </a-form-item>
 
-                <a-form-item label="活动标签" :label-col="{ span: 4 } " :wrapper-col="{ span:8 }">
+                <a-form-item label="报名时间" :label-col="{ span:4}"   >
+                    <a-range-picker :format="dateFormat" v-decorator="replaceActivity.enrollDate" :disabledDate="disabledDate"/>
+                </a-form-item>
+
+                <a-form-item label="活动标签" :label-col="{ span: 4 } "   :wrapper-col="{ span:8 }" >
                     <a-input placeholder="请输入活动标签" v-decorator="replaceActivity.label"></a-input>
                 </a-form-item>
-                <a-form-item label="活动规则" :label-col="{ span: 4 } " :wrapper-col="{ span:8 }">
+                <a-form-item label="活动规则" :label-col="{ span: 4 } "   :wrapper-col="{ span:8 }" >
                     <a-input placeholder="请输入活动规则" v-decorator="replaceActivity.rule"></a-input>
                 </a-form-item>
 
-                <a-form-item :label="'活动图片'">
-                    <a-upload v-decorator="replaceActivity.imgsList"
-                              :action='action'
-                              listType="picture-card"
-                              @preview="handlePreview"
-                              :fileList="fileList"
-                              @change="handleChangePic"
-                              :remove='removePic'
-                              multiple
+                <a-form-item :label="'活动图片'" >
+                    <a-upload   v-decorator="replaceActivity.imgsList"
+                                :action='action'
+                                listType="picture-card"
+                                @preview="handlePreview"
+                                :fileList="fileList"
+                                @change="handleChangePic"
+                                :remove='removePic'
+                                multiple
                     >
                         <div v-if="fileList.length < 6">
                             <a-icon type="plus"/>
@@ -63,17 +60,15 @@
     import fetch from '@/common/fetch'
     import moment from 'moment';
     import 'moment/locale/zh-cn';
-
     moment.locale('zh-cn');
-    import {message} from 'ant-design-vue'
-
+    import { message } from 'ant-design-vue'
     export default {
         name: "replaceActivity",
-        data() {
-            return {
-                modalWidth: '6rem',
-                dateFormat: 'YYYY-MM-DD',
-                replaceActivity: {
+        data(){
+            return{
+                modalWidth:'6rem',
+                dateFormat:'YYYY-MM-DD',
+                replaceActivity:{
                     form: this.$form.createForm(this),
                     name: [
                         `name`,
@@ -94,7 +89,7 @@
                         }
                     ],
 
-                    enrollDate: [
+                    enrollDate:[
                         `enrollDate`,
                         {
                             rules: [{
@@ -103,7 +98,7 @@
                             }],
                         }
                     ],
-                    rule: [
+                    rule:[
                         `rule`,
                         {
                             rules: [{
@@ -112,7 +107,7 @@
                             }],
                         }
                     ],
-                    label: [
+                    label:[
                         `label`,
                         {
                             rules: [{
@@ -153,69 +148,73 @@
                     // ],
 
                 },
-                previewVisible: false,
-                previewImage: '',
-                fileList: [],
+                previewVisible:false,
+                previewImage:'',
+                fileList:[],
                 action: '/maintenance/qiniu',
-                replaceActivityShow: false,
-                activityId: ''
+                replaceActivityShow:false,
+                activityId:''
             }
         },
-        methods: {
+        methods:{
             handleOk() {
                 this.previewVisible = false
             },
-            handleCancel() {
+            handleCancel(){
                 this.previewVisible = false
             },
             handlePreview(file) {
                 console.log('handle preview file')
-                console.log(file);
+                console.log(file)
                 this.previewImage = file.url || file.thumbUrl
                 this.previewVisible = true
             },
-            handleChangePic({fileList, file}) {
+            handleChangePic({fileList,file}) {
                 console.log(fileList);
                 this.fileList = fileList;
             },
-            removePic(file) {
-                if (file.response) {
-                    fetch.delete(this.action + '/' + file.response.obj[0].key)
+            removePic (file) {
+                console.log(file.response.obj[0].key)
+                if(file.name !==undefined){
+                    fetch.delete(this.action +'/'+ file.name, '')
+                        .then(res => console.log(res))
+                }else{
+                    fetch.delete(this.action +'/'+file.response.obj[0].key)
                         .then(res => console.log(res))
                 }
+
                 console.log(file)
             },
-            submitreplaceActivity() {
+            submitreplaceActivity(){
                 this.replaceActivity.form.validateFields((error, values) => {
                     if (!error) {
                         console.log(values);
-                        let parmas = values;
-                        let imgArray = this.fileList;
+                        let parmas=values;
+                        let imgArray=this.fileList;
                         let imgKeyString = '';
-                        for (let i = 0; i < imgArray.length; i++) {
-                            if (imgArray[i].response !== undefined) {
+                        for(let i=0;i<imgArray.length;i++){
+                            if(imgArray[i].name !==undefined){
+                                imgKeyString +=imgArray[i].name + ','
+                            }else{
                                 imgKeyString += imgArray[i].response.obj[0].key + ','
-
-                            } else {
-                                imgKeyString += imgArray[i].name + ','
                             }
                         }
-                        console.log(typeof(moment(values.ActiveDate[0]).valueOf()))
-                        let activiRange = parmas.ActiveDate;
-                        let encolRange = parmas.enrollDate;
-                        let begin = moment(activiRange[0]).valueOf();
-                        let end = moment(activiRange[1]).valueOf();
-                        let enrollB = moment(encolRange[0]).valueOf();
-                        let enrollE = moment(encolRange[1]).valueOf()
+                        console.log(typeof(moment(values.ActiveDate[0]).valueOf()) )
+                        let activiRange=parmas.ActiveDate;
+                        let encolRange=parmas.enrollDate;
+                        let begin=moment(activiRange[0]).valueOf();
+                        let end=moment(activiRange[1]).valueOf();
+                        let enrollB=moment(encolRange[0]).valueOf();
+                        let enrollE=moment(encolRange[1]).valueOf()
                         parmas['banner'] = imgKeyString.slice(0, imgKeyString.length - 1);
-                        parmas['beginDate'] = begin;
-                        parmas['endDate'] = end;
+                        parmas['beginDate'] =begin;
+                        parmas['endDate'] =end;
                         parmas['enrollBegin'] = enrollB;
-                        parmas['enrollEnd'] = enrollE;
-                        parmas['icon'] = '';
-                        parmas['id'] = this.activityId;
+                        parmas['enrollEnd'] =enrollE;
+                        parmas['icon'] ='';
+                        parmas['id'] =this.activityId;
                         console.log(parmas);
-                        fetch.post('/shop/activity/updateById', parmas).then((res) => {
+                        fetch.post('/shop/activity/updateById',parmas).then((res)=>{
                             console.log(res);
                             message.info(res.msg);
                             this.$emit('fetchAgan');
@@ -226,14 +225,14 @@
 
 
             },
-            cancel() {
-                this.replaceActivityShow = false
+            cancel(){
+                this.replaceActivityShow=false
             },
-            setreplaceActivityShow(val) {
-                this.replaceActivityShow = val
+            setreplaceActivityShow(val){
+                this.replaceActivityShow=val
             },
-            setactivityId(val) {
-                this.activityId = val
+            setactivityId(val){
+                this.activityId=val
             },
             disabledDate(current) {
                 return current && current < moment().endOf('day');
@@ -243,32 +242,31 @@
 </script>
 
 <style scoped>
-    .wrap {
+    .wrap{
         width: 100%;
         height: 100%;
     }
-
-    input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    input::-webkit-input-placeholder ,textarea::-webkit-input-placeholder{ /* WebKit, Blink, Edge */
         color: #A6A6A6;
         font-size: 0.16rem;
         letter-spacing: 1px;
     }
 
-    input:-moz-placeholder, textarea::-webkit-input-placeholder { /* Mozilla Firefox 4 to 18 */
-        color: #A6A6A6;
-
-        font-size: 0.16rem;
-        letter-spacing: 1px;
-    }
-
-    input::-moz-placeholder, textarea::-webkit-input-placeholder { /* Mozilla Firefox 19+ */
+    input:-moz-placeholder,textarea::-webkit-input-placeholder { /* Mozilla Firefox 4 to 18 */
         color: #A6A6A6;
 
         font-size: 0.16rem;
         letter-spacing: 1px;
     }
 
-    input:-ms-input-placeholder, textarea::-webkit-input-placeholder { /* Internet Explorer 10-11 */
+    input::-moz-placeholder,textarea::-webkit-input-placeholder { /* Mozilla Firefox 19+ */
+        color: #A6A6A6;
+
+        font-size: 0.16rem;
+        letter-spacing: 1px;
+    }
+
+    input:-ms-input-placeholder,textarea::-webkit-input-placeholder { /* Internet Explorer 10-11 */
         color: #A6A6A6;
 
         font-size: 0.16rem;

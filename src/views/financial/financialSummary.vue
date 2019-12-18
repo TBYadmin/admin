@@ -18,8 +18,8 @@
                     </a-form>
                 </div>
             </a-layout-header>
-            <a-layout-content  class="table-layout"  style="padding:  0 0.25rem ;">
-
+            <a-layout-content   style="padding:  0 0.25rem ;">
+                <template>
                     <a-table
                             :columns="columns"
                             :dataSource="data"
@@ -29,7 +29,7 @@
                             :pagination="pagination"
 
                     />
-
+                </template>
             </a-layout-content>
         </a-layout>
 
@@ -220,6 +220,7 @@
 
 
     ];
+
     const data = [
 
         {
@@ -444,7 +445,7 @@
                 let that = this;
                 require.ensure([], () => {
                     //这里的require的路径要写对，不然运行会有错误
-                    const {export_json_to_excel_financial} = require('@/vendor/Export2ExcelEX');
+                    const {export_json_to_excel} = require('@/vendor/Export2ExcelEX');
                     let tHeader = [];
                     let filterVal = [];
                     that.columns[0].children.forEach((item, index) => {
@@ -470,14 +471,8 @@
                             })
                         }
                     })
-                    const data = that.formatJson(filterVal, list);
-                    debugger
-                    if(that.searchForm.timeRange.length>0){
-                        export_json_to_excel_financial(tHeader, data, moment(that.searchForm.timeRange[0]).format('YYYY-MM-DD')+'至'+ moment(that.searchForm.timeRange[1]).format('YYYY-MM-DD')+'财务结算汇总表');
-                    }else{
-                        export_json_to_excel_financial(tHeader, data, '财务结算汇总表');
-                    }
-
+                    const data = this.formatJson(filterVal, list);
+                    export_json_to_excel(tHeader, data, '对账单');
                 })
             }
         }
@@ -516,13 +511,5 @@
         text-align: center;
         cursor: pointer;
         border-left: 1px solid #ddd;
-    }
-    .table-layout .ant-table-thead > tr {
-        background: rgba(220, 220, 220, 1);
-        color: #616467;
-        font-size: 0.16rem;
-    }
-    .ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-thead > tr > th{
-        background: rgba(220, 220, 220, 1) !important;
     }
 </style>

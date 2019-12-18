@@ -27,12 +27,11 @@
                         <a-menu-item :key="subItem.key" @click="openPane" v-for="(subItem,index) in item.children">
                             {{subItem.name}}
                         </a-menu-item>
-                        <a-menu-item key="orderAnalysis" @click="openPane"> 订单分析</a-menu-item>
-                        <!--<a-menu-item key="financialSummary" @click="openPane">财务汇总</a-menu-item>-->
-                        <!--<a-menu-item key="siteRevenueNumber" @click="openPane">营业点财务汇总</a-menu-item>-->
-                        <!--<a-menu-item key="commoditySales" @click="openPane">商品销售汇总</a-menu-item>-->
-                        <!--<a-menu-item key="shouldCollect" @click="openPane">应收账明细</a-menu-item>-->
-
+                        <!--<a-menu-item key="orderList" @click="openPane">订单列表</a-menu-item>-->
+                        <a-menu-item key="financialSummary" @click="openPane">财务汇总</a-menu-item>
+                        <a-menu-item key="siteRevenueNumber" @click="openPane">营业点财务汇总</a-menu-item>
+                        <a-menu-item key="commoditySales" @click="openPane">商品销售汇总</a-menu-item>
+                        <a-menu-item key="shouldCollect" @click="openPane">应收账款明细</a-menu-item>
 
                         <!--<a-menu-item key="channelManagement" @click="openPane">支付渠道管理</a-menu-item>-->
                     </a-sub-menu>
@@ -88,7 +87,7 @@
                     financialSummary:'财务汇总',
                     siteRevenueNumber:'营业点财务汇总',
                     commoditySales:'商品销售汇总',
-                    shouldCollect:'应收账款明细'
+                    shouldCollect:'应收账款明细表'
                 },
                 userMenuList: []
             }
